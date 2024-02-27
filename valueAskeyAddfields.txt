@@ -1,0 +1,45 @@
+db.getCollection('StudentActivityLogs').aggregate([
+
+{$group:
+    {_id:
+        {'clientId':'$clientId','activityName':"$activityData.activityName"},
+        items: {$addToSet: {"student":"$studentId"}},
+                counts:{$addToSet:{"activityName":"$activityData.activityName"}}
+            }
+        },
+    { $lookup: {
+   "from": "Institutes",
+   "localField": "_id.clientId",
+   "foreignField": "clientId",
+   "as": "userinfo"
+ }},
+ {
+  $unwind:
+    {
+      path: "$userinfo",
+      preserveNullAndEmptyArrays: true
+    }
+},    
+{$addFields:{"items.studentCount":{"$size":"$items"}}},
+ {$addFields:{tmp:{$zip:{inputs:["$counts.activityName","$items.studentCount"]}}}},
+     {$addFields:{"Obj":{$arrayToObject:"$tmp"}}},
+     {$project:{instituteName:"$userinfo.instituteName",_id:0,
+         activitySpecificStudentCount:"$Obj"}},
+ {$sort:{"instituteName":1}}
+        ])
+
+
+db.getCollection('StudentActivityLogs').aggregate([
+{$lookup: {
+ "from": "Institutes","localField": "clientId","foreignField": "clientId","as": "userinfo"}},
+{$unwind:{path: "$userinfo"}},{$group:
+    {_id:{'instituteName':'$userinfo.instituteName','activityName':"$activityData.activityName"},
+items: {$addToSet: {"student":"$studentId",'activity':"$activityData.activityName"}}
+}},
+{$project:
+     {tmp:{"activityName": "$_id.activityName","InstituteName":"$_id.instituteName"}}
+  },
+  {$addFields:
+     {"tmp.activityName":{$size:{"$ifNull":["$items",[]]}}}
+  }, {$replaceRoot:{newRoot:"$tmp"}}
+  ])

@@ -1,0 +1,87 @@
+db.StudentAcademicProfiles.aggregate(
+    [{$match:
+    {'academicYear.academicYearId' : '225nEBFVbCOpNncV5UFJrM0x13o',
+        isDeleted:false,
+        'standard.standardName':'BBA SM SY Semester 3' ,
+    'clientId':'20ziQxozskK9j4mNQHEcpzk0aF5'}
+    },
+      {$lookup: {
+           from: "Tests",
+           localField: "standard.standardId",
+           foreignField: "standard.standardId",
+           as: "AllTests"
+         }},
+         {$unwind:{path:"$AllTests"}},
+        {$match:{'AllTests.testName':{$in:[/Course End Test/]}}},
+        {$lookup: {
+               from: "StudentTestSubmissions",
+                 localField: "test.testId",
+           foreignField: "AllTests.testId",
+               as: "FinalOutput"
+             }},
+               {$unwind:{path:"$FinalOutput"}},
+                {
+                    $group: { _id:{"testId":"$AllTests.testId", 'stuId':'$student.studentId'},
+                     student:{$first: '$student'},
+                     rollNumber:{$first:'$rollNumber'},
+                     standard:{$first:'$standard'},
+                    test:{$first:'$AllTests'},
+                    'obtainedScore':{ $sum: {   $cond: { if: { $and:[ {
+                        $eq: [ "$student.studentId", '$FinalOutput.studentId' ]}, 
+                        {
+                        $eq: [ "$AllTests.testId", '$FinalOutput.test.testId' ]}
+                        ] },
+        then: '$FinalOutput.evaluation.obtainedScore', else: "Test Not Attempted" }}},
+         'attemptedDate':{ $max: {   $cond: { if: { $and:[ {
+                        $eq: [ "$student.studentId", '$FinalOutput.studentId' ]}, 
+                        {
+                        $eq: [ "$AllTests.testId", '$FinalOutput.test.testId' ]}
+                        ] },
+        then:  
+        { $dateToString: { format: "%d-%m-%Y %H:%M", date: {$toDate:"$FinalOutput.dateOfAppearance"},timezone: "+05:30" } }
+        , else: "01-01-1900 00:00" }}},
+        'evaluationResult': {
+              $addToSet: {   $cond: { if: { $and:[ {
+                        
+                        $eq: [ "$AllTests.testId", '$FinalOutput.test.testId' ]},
+                        {
+                        
+                        $eq: [ "$student.studentId", '$FinalOutput.studentId' ]}
+                        ] },
+        then: '$FinalOutput.evaluation.evaluationResult', else: "" }}},
+        'testStatus': {
+              $addToSet: {   $cond: { if: { $and:[ {
+                        
+                        $eq: [ "$AllTests.testId", '$FinalOutput.test.testId' ]},
+                        {
+                        
+                        $eq: [ "$student.studentId", '$FinalOutput.studentId' ]}
+                        ] },
+        then: '$FinalOutput.testStatus', else: "" }}}} ,
+        
+                },
+                {$project:{
+                    "_id":0,
+                     "RollNumber":"$rollNumber",
+        "Name":"$student.fullName",                  
+        "StandardName":"$standard.standardName",
+        "SubjectCode":"$test.subjects.subjectCode",
+        "SubjectName":"$test.subjects.subjectName",
+        "TestName":"$test.testName",
+        "AppearanceDate":'$attemptedDate',
+        "ObtainedMarks":"$obtainedScore",
+        "MinimumPassingMarks":"$test.testPassingMarks",
+        "TotalMarks":"$test.testTotalMarks",
+        "EvaluationResult":{
+        $reduce: {
+       input: "$evaluationResult",
+ initialValue: "",
+       in: { $concat : ["$$value", "$$this"] }
+     }},
+     "TestStatus":{
+        $reduce: {
+       input: "$testStatus",
+ initialValue: "",
+       in: { $concat : ["$$value", "$$this"] }
+     }}},                  
+}]).toArray()

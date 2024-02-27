@@ -1,0 +1,8 @@
+db.getCollection('Rating').updateMany({"reportList.cdnServer":""},
+    
+    {"$set":{
+        
+        "reportList.$[el].cdnServer":"https://wblignou.mkcl.org/csCDNServer"
+
+        }},
+        {arrayFilters:[{"el.cdnServer":""}]})

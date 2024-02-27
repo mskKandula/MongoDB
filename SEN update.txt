@@ -1,0 +1,200 @@
+//Insert the data into a temp collection of 'SEN'
+
+db.getCollection('SEN').insertMany(
+    [
+    {
+        "SENNumber": "2002416731",
+        "loginId": "panudewawar@gmail.com"
+    },
+    {
+        "SENNumber": "2002416747",
+        "loginId": "arvind12071994@gmail.com"
+    },
+    {
+        "SENNumber": "2002416752",
+        "loginId": "ashwinifulware111@gmail.com"
+    },
+    {
+        "SENNumber": "2002416768",
+        "loginId": "muluk707070@gmail.com"
+    },
+    {
+        "SENNumber": "2002416773",
+        "loginId": "pradipshinde3953@gmail.com"
+    },
+    {
+        "SENNumber": "2002416789",
+        "loginId": "prakashkadam8812@gmail.com"
+    },
+    {
+        "SENNumber": "2002416665",
+        "loginId": "kulkarnip646@gmail.com"
+    },
+    {
+        "SENNumber": "2002416670",
+        "loginId": "rakesh957698@gmail.com"
+    },
+    {
+        "SENNumber": "2002416686",
+        "loginId": "ramjanam.brb121@gmail.com"
+    },
+    {
+        "SENNumber": "2002416691",
+        "loginId": "arunbhosale09@gmail.com"
+    },
+    {
+        "SENNumber": "2002416705",
+        "loginId": "himanshu1998gyan@gmail.com"
+    },
+    {
+        "SENNumber": "2002416710",
+        "loginId": "aniruddhabhojane49@gmail.com"
+    },
+    {
+        "SENNumber": "2002416726",
+        "loginId": "rajshrigiradkar411@gmail.com"
+    },
+    {
+        "SENNumber": "2002417229",
+        "loginId": "ranjankumar68780@gmail.com"
+    },
+    {
+        "SENNumber": "2002417213",
+        "loginId": "mdarbaj9060@gmail.com"
+    },
+    {
+        "SENNumber": "2002416562",
+        "loginId": "masoombbu786@gmail.com"
+    },
+    {
+        "SENNumber": "2002416578",
+        "loginId": "vikasakharate@gmail.com"
+    },
+    {
+        "SENNumber": "2002416583",
+        "loginId": "bhagyshree141@gmail.com"
+    },
+    {
+        "SENNumber": "2002416599",
+        "loginId": "babusaif076@gmail.com"
+    },
+    {
+        "SENNumber": "2002416602",
+        "loginId": "revatipradhan11@gmail.com"
+    },
+    {
+        "SENNumber": "2002416618",
+        "loginId": "raj419701@gmail.com"
+    },
+    {
+        "SENNumber": "2002416623",
+        "loginId": "ankitbiharsharif@gmail.com"
+    },
+    {
+        "SENNumber": "2002416639",
+        "loginId": "poojalambhate8086@gmail.com"
+    },
+    {
+        "SENNumber": "2002416644",
+        "loginId": "harshkhandelwal8292@gmail.com"
+    },
+    {
+        "SENNumber": "2002416650",
+        "loginId": "vaishnavi.vandekar2001@gmail.com"
+    },
+    {
+        "SENNumber": "2002416454",
+        "loginId": "aniketghadge81297@gmail.com"
+    },
+    {
+        "SENNumber": "2002416460",
+        "loginId": "44uttamkumar66@gmail.com"
+    },
+    {
+        "SENNumber": "2002416475",
+        "loginId": "satheprasad7@gmail.com"
+    },
+    {
+        "SENNumber": "2002416480",
+        "loginId": "vishalkumar11.vk10@gmail.com"
+    },
+    {
+        "SENNumber": "2002416496",
+        "loginId": "dhirendra78.dp@gmail.com"
+    },
+    {
+        "SENNumber": "2002416500",
+        "loginId": "suhanipatil72102@gmail.com"
+    },
+    {
+        "SENNumber": "2002416515",
+        "loginId": "karishmayesankar@gmail.com"
+    },
+    {
+        "SENNumber": "2002416520",
+        "loginId": "abhishekshrivastwa16@gmail.com"
+    },
+    {
+        "SENNumber": "2002416536",
+        "loginId": "prachinale45@gmail.com"
+    },
+    {
+        "SENNumber": "2002416541",
+        "loginId": "ganeshkole9422@gmail.com"
+    },
+    {
+        "SENNumber": "2002416372",
+        "loginId": "pradipchate5057@gmail.com"
+    },
+    {
+        "SENNumber": "2002416794",
+        "loginId": "amaridevde@gmail.com"
+    },
+    {
+        "SENNumber": "2002416388",
+        "loginId": "ajchavhan1020@gmail.com"
+    },
+    {
+        "SENNumber": "2002416393",
+        "loginId": "momanishahu654123@gmail.com"
+    },
+    {
+        "SENNumber": "2002416407",
+        "loginId": "manojsjadhav9689@gmail.com"
+    },
+    {
+        "SENNumber": "2002416557",
+        "loginId": "kalpeshthorat313@gmail.com"
+    },
+    {
+        "SENNumber": "2002416412",
+        "loginId": "wadekarvivek007@gmail.com"
+    },
+    {
+        "SENNumber": "2002416428",
+        "loginId": "vishalgaikwad0775@gmail.com"
+    },
+    {
+        "SENNumber": "2002416433",
+        "loginId": "thakursnehal59@gmail.com"
+    },
+    {
+        "SENNumber": "2002416449",
+        "loginId": "vaibhav7498492033@gmail.com"
+    }
+])
+
+//Later map this data to our data and update the field
+
+db.getCollection('SEN').find({}).forEach(function(doc){
+    
+    db.getCollection('AcademicDetails').updateOne({loginId:doc.loginId},
+    
+    {"$set":{
+        
+        "senNumber":doc.SENNumber
+
+        }}
+    )
+    
+    })

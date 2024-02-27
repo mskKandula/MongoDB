@@ -1,0 +1,5 @@
+db.getCollection('StudentTestSubmissions').find({academicProfileId: "248gMi4I3xXcm9i9orXzyDcJY1r",
+"test.testName":/Course/},{"_id":0,"TestName":"$test.testName","TestStartTime":"$test.startTime",
+"TestEndTime":"$test.endTime","Subject":"$subject.subjectName","DateOfAppearance":"$dateOfAppearance",
+"EvaluationDate":"$evaluation.evaluationDate",
+    "CreatedOn":{ $dateToString: { format: "%Y-%m-%d", date:{"$toDate":{"$multiply":["$createdOn",1000]}}}}}).toArray()

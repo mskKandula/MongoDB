@@ -1,0 +1,472 @@
+1- db.createCollection("Temp")
+
+2- db.getCollection('Temp').insertMany( [
+        {
+            "senNumber": "2006002200",
+            "wblId": "WBL200000209"
+        },
+        {
+            "senNumber": "2006048108",
+            "wblId": "WBL200000397"
+        },
+        {
+            "senNumber": "2006003443",
+            "wblId": "WBL200000258"
+        },
+        {
+            "senNumber": "2006003607",
+            "wblId": "WBL200000257"
+        },
+        {
+            "senNumber": "2006048113",
+            "wblId": "WBL200000288"
+        },
+        {
+            "senNumber": "2006003823",
+            "wblId": "WBL200000172"
+        },
+        {
+            "senNumber": "2006005092",
+            "wblId": "WBL200000353"
+        },
+        {
+            "senNumber": "2006048129",
+            "wblId": "WBL200000443"
+        },
+        {
+            "senNumber": "2006011808",
+            "wblId": "WBL200000251"
+        },
+        {
+            "senNumber": "2006012044",
+            "wblId": "WBL200000546"
+        },
+        {
+            "senNumber": "2006012276",
+            "wblId": "WBL200000537"
+        },
+        {
+            "senNumber": "2006012342",
+            "wblId": "WBL200000577"
+        },
+        {
+            "senNumber": "2006048134",
+            "wblId": "WBL200000594"
+        },
+        {
+            "senNumber": "2006012450",
+            "wblId": "WBL200000628"
+        },
+        {
+            "senNumber": "2006012701",
+            "wblId": "WBL200000560"
+        },
+        {
+            "senNumber": "2006013040",
+            "wblId": "WBL200000814"
+        },
+        {
+            "senNumber": "2006053660",
+            "wblId": "WBL200000572"
+        },
+        {
+            "senNumber": "2006048140",
+            "wblId": "WBL200000842"
+        },
+        {
+            "senNumber": "2006014704",
+            "wblId": "WBL200001208"
+        },
+        {
+            "senNumber": "2006014746",
+            "wblId": "WBL200000611"
+        },
+        {
+            "senNumber": "2006015296",
+            "wblId": "WBL200001749"
+        },
+        {
+            "senNumber": "2006015336",
+            "wblId": "WBL200001795"
+        },
+        {
+            "senNumber": "2006015357",
+            "wblId": "WBL200000355"
+        },
+        {
+            "senNumber": "2006023943",
+            "wblId": "WBL200001922"
+        },
+        {
+            "senNumber": "2006015640",
+            "wblId": "WBL200001738"
+        },
+        {
+            "senNumber": "2006015721",
+            "wblId": "WBL200000427"
+        },
+        {
+            "senNumber": "2006015850",
+            "wblId": "WBL200001994"
+        },
+        {
+            "senNumber": "2006048160",
+            "wblId": "WBL200002002"
+        },
+        {
+            "senNumber": "2006048176",
+            "wblId": "WBL200002000"
+        },
+        {
+            "senNumber": "2006016203",
+            "wblId": "WBL200002060"
+        },
+        {
+            "senNumber": "2006028924",
+            "wblId": "WBL200002085"
+        },
+        {
+            "senNumber": "2006029237",
+            "wblId": "WBL200000648"
+        },
+        {
+            "senNumber": "2006029371",
+            "wblId": "WBL200000470"
+        },
+        {
+            "senNumber": "2005980093",
+            "wblId": "WBL200001739"
+        },
+        {
+            "senNumber": "2005986996",
+            "wblId": "WBL200002102"
+        },
+        {
+            "senNumber": "2005982645",
+            "wblId": "WBL200002068"
+        },
+        {
+            "senNumber": "2005982711",
+            "wblId": "WBL200002121"
+        },
+        {
+            "senNumber": "2005987061",
+            "wblId": "WBL200002123"
+        },
+        {
+            "senNumber": "2005987272",
+            "wblId": "WBL200002129"
+        },
+        {
+            "senNumber": "2006028668",
+            "wblId": "WBL200002131"
+        },
+        {
+            "senNumber": "2005987436",
+            "wblId": "WBL200002155"
+        },
+        {
+            "senNumber": "2006065569",
+            "wblId": "WBL200002163"
+        },
+        {
+            "senNumber": "2006065595",
+            "wblId": "WBL200002192"
+        },
+        {
+            "senNumber": "2005983317",
+            "wblId": "WBL200002233"
+        },
+        {
+            "senNumber": "2006120368",
+            "wblId": "WBL200002245"
+        },
+        {
+            "senNumber": "2006030222",
+            "wblId": "WBL200002275"
+        },
+        {
+            "senNumber": "2006065640",
+            "wblId": "WBL200002276"
+        },
+        {
+            "senNumber": "2006030520",
+            "wblId": "WBL200002285"
+        },
+        {
+            "senNumber": "2005983770",
+            "wblId": "WBL200002074"
+        },
+        {
+            "senNumber": "2006030979",
+            "wblId": "WBL200000256"
+        },
+        {
+            "senNumber": "2006031208",
+            "wblId": "WBL200002312"
+        },
+        {
+            "senNumber": "2006031580",
+            "wblId": "WBL200000337"
+        },
+        {
+            "senNumber": "2005984102",
+            "wblId": "WBL200000083"
+        },
+        {
+            "senNumber": "2005984191",
+            "wblId": "WBL200000785"
+        },
+        {
+            "senNumber": "2006031846",
+            "wblId": "WBL200000582"
+        },
+        {
+            "senNumber": "2006032077",
+            "wblId": "WBL200000236"
+        },
+        {
+            "senNumber": "2005984252",
+            "wblId": "WBL200000595"
+        },
+        {
+            "senNumber": "2006032164",
+            "wblId": "WBL200000310"
+        },
+        {
+            "senNumber": "2006032457",
+            "wblId": "WBL200000173"
+        },
+        {
+            "senNumber": "2005988480",
+            "wblId": "WBL200000303"
+        },
+        {
+            "senNumber": "2006007670",
+            "wblId": "WBL200000171"
+        },
+        {
+            "senNumber": "2006011881",
+            "wblId": "WBL200000534"
+        },
+        {
+            "senNumber": "2006065661",
+            "wblId": "WBL200002190"
+        },
+        {
+            "senNumber": "2006033176",
+            "wblId": "WBL200000496"
+        },
+        {
+            "senNumber": "2006033659",
+            "wblId": "WBL200000101"
+        },
+        {
+            "senNumber": "2006034043",
+            "wblId": "WBL200000356"
+        },
+        {
+            "senNumber": "2006057671",
+            "wblId": "WBL200000413"
+        },
+        {
+            "senNumber": "2006007768",
+            "wblId": "WBL200000861"
+        },
+        {
+            "senNumber": "2006007829",
+            "wblId": "WBL200001879"
+        },
+        {
+            "senNumber": "2006007876",
+            "wblId": "WBL200002091"
+        },
+        {
+            "senNumber": "2006034444",
+            "wblId": "WBL200000532"
+        },
+        {
+            "senNumber": "2006034681",
+            "wblId": "WBL200001920"
+        },
+        {
+            "senNumber": "2006034845",
+            "wblId": "WBL200001721"
+        },
+        {
+            "senNumber": "2006035081",
+            "wblId": "WBL200000067"
+        },
+        {
+            "senNumber": "2006035564",
+            "wblId": "WBL200000196"
+        },
+        {
+            "senNumber": "2006007937",
+            "wblId": "WBL200000446"
+        },
+        {
+            "senNumber": "2006007979",
+            "wblId": "WBL200000344"
+        },
+        {
+            "senNumber": "2006008002",
+            "wblId": "WBL200000193"
+        },
+        {
+            "senNumber": "2006035646",
+            "wblId": "WBL200000432"
+        },
+        {
+            "senNumber": "2006035780",
+            "wblId": "WBL200000082"
+        },
+        {
+            "senNumber": "2006008023",
+            "wblId": "WBL200000110"
+        },
+        {
+            "senNumber": "2006035862",
+            "wblId": "WBL200000174"
+        },
+        {
+            "senNumber": "2006035939",
+            "wblId": "WBL200001505"
+        },
+        {
+            "senNumber": "2006065682",
+            "wblId": "WBL200000854"
+        },
+        {
+            "senNumber": "2006119480",
+            "wblId": "WBL200000126"
+        },
+        {
+            "senNumber": "2006057820",
+            "wblId": "WBL200002305"
+        },
+        {
+            "senNumber": "2006058050",
+            "wblId": "WBL200002297"
+        },
+        {
+            "senNumber": "2006003504",
+            "wblId": "WBL200000844"
+        },
+        {
+            "senNumber": "2006049568",
+            "wblId": "WBL200000175"
+        },
+        {
+            "senNumber": "2006049676",
+            "wblId": "WBL200000245"
+        },
+        {
+            "senNumber": "2006058174",
+            "wblId": "WBL200000115"
+        },
+        {
+            "senNumber": "2006058343",
+            "wblId": "WBL200000113"
+        },
+        {
+            "senNumber": "2006049871",
+            "wblId": "WBL200002296"
+        },
+        {
+            "senNumber": "2006049932",
+            "wblId": "WBL200001885"
+        },
+        {
+            "senNumber": "2006050065",
+            "wblId": "WBL200002266"
+        },
+        {
+            "senNumber": "2006050189",
+            "wblId": "WBL200001903"
+        },
+        {
+            "senNumber": "2006065717",
+            "wblId": "WBL200002301"
+        },
+        {
+            "senNumber": "2006050738",
+            "wblId": "WBL200002318"
+        },
+        {
+            "senNumber": "2006050810",
+            "wblId": "WBL200001990"
+        },
+        {
+            "senNumber": "2006023497",
+            "wblId": "WBL200001992"
+        },
+        {
+            "senNumber": "2006023619",
+            "wblId": "WBL200001996"
+        },
+        {
+            "senNumber": "2006048181",
+            "wblId": "WBL200001881"
+        },
+        {
+            "senNumber": "2006048200",
+            "wblId": "WBL200000321"
+        },
+        {
+            "senNumber": "2006054040",
+            "wblId": "WBL200000261"
+        },
+        {
+            "senNumber": "2006048263",
+            "wblId": "WBL200002268"
+        },
+        {
+            "senNumber": "2006023917",
+            "wblId": "WBL200002325"
+        },
+        {
+            "senNumber": "2006023922",
+            "wblId": "WBL200002098"
+        },
+        {
+            "senNumber": "2006048350",
+            "wblId": "WBL200002287"
+        },
+        {
+            "senNumber": "2006023938",
+            "wblId": "WBL200002320"
+        },
+        {
+            "senNumber": "2006118210",
+            "wblId": "MFS19MAH0000109"
+        }
+    ])
+
+
+
+3- db.getCollection('Temp').find({}).forEach(function(doc){
+    db.getCollection('BasicProfile').updateOne({wblId:doc.wblId},
+    
+    {"$set":{
+        
+        "senNumber":doc.senNumber
+
+        }}
+    )
+})
+
+
+4- db.getCollection('Temp').find({}).forEach(function(doc){
+    db.getCollection('AcademicDetails').updateOne({wblId:doc.wblId},
+    
+    {"$set":{
+        
+        "senNumber":doc.senNumber
+
+        }}
+    )
+})
+
+
+5- db.Temp.drop()

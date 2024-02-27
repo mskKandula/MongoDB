@@ -1,0 +1,10 @@
+db.getCollection('ParentInstitutes').update(
+{"randomNumber" : "515947"},
+{$push:{"ListOfInstitutes":{
+    
+            "clientId" : "1uZQSB7Y47BCGk8UxvUQWdFw6Gw",
+            "instituteId" : "IN182100002",
+            "instituteName" : "Florida Universityyy"
+        }}}
+
+)

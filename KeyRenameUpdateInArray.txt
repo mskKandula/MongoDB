@@ -1,0 +1,19 @@
+db.getCollection("CCECalculation").updateMany({
+   "cceCalculationFormula.consideredAssignments.subject":{
+      "$exists":true
+   }
+},
+[
+   {
+      "$set":{
+         "cceCalculationFormula.consideredAssignments":{
+            "$map":{
+               "input":"$cceCalculationFormula.consideredAssignments",
+               "in":{
+                  "subjects":"$$this.subject"
+               }
+            }
+         }
+      }
+   }
+])

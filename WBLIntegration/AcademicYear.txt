@@ -1,0 +1,2 @@
+db.getCollection('Batch').find({},
+{"batchName":1,"batchCode":1,"startDate":1,"endDate":1}).toArray()

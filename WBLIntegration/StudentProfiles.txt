@@ -1,0 +1,105 @@
+db.getCollection('BasicProfile').aggregate([{
+    $match:{
+    "wblUserType" : "CANDIDATE",
+    "isAccountActive":true,
+    "mUniversityId" : "44c14242-0c8f-4a11-8b71-4ac6fde5fa42"
+    }},
+    {
+        $project:{
+    "_id":0,    
+    "RollNumber":"$wblId",
+    "FirstName": { $ifNull: [ "$personalDetails.firstName", "$personalDetails.fullName" ] },
+    "MiddleName":{ $ifNull: [ "$personalDetails.firstName", "" ] },
+    "LastName":{ $ifNull: [ "$personalDetails.firstName", "" ] },   
+    "FatherName":{ $ifNull: [ "$personalDetails.fatherName", "" ] },
+    "MotherName":{ $ifNull: [ "$personalDetails.motherName", "" ] },
+    "MobileNo":"$contactDetails.MobileNumber",
+    "EmailId":"$contactDetails.emailId",
+    "Gender":"$personalDetails.genderName",
+    "DOB":{
+        $let: {
+               vars: {
+                  dateOB:{ $toDate: "$personalDetails.dateOfBirth"}
+              },
+        
+         in:{$dateToString: 
+        { format: "%d-%m-%Y",
+            date: "$$dateOB" } }
+    }
+}
+    }
+}
+    ]
+        ).toArray()
+
+
+
+
+
+
+
+db.getCollection('BasicProfile').find({"wblUserType" : "CANDIDATE"},{"wblId":1,"contactDetails.MobileNumber":1,
+    "contactDetails.emailId":1,"loginId":1,"personalDetails.firstName":1,
+    "personalDetails.lastName":1,"personalDetails.nameOnLeavingCertificate":1,
+    "personalDetails.middleName":1,"personalDetails.fatherName":1,
+    "personalDetails.motherName":1,"personalDetails.genderName":1,
+    "personalDetails.dateOfBirth":1, "isAccountActive" :1,
+    "mUniversityName" : 1,"mUniversityId":1,"mProgramName":1,"mProgramId":1,
+    "mBranchName" : 1,"mBranchId":1,
+    "profilePhotoUrl":1,"admissionFeePayment":1,"senNumber":1}).toArray()
+
+
+
+db.getCollection('BasicProfile').aggregate([{"$match":{
+    "wblUserType" : "CANDIDATE"
+}},
+{
+    "$lookup":
+        { "from": "AcademicDetails", "localField": "loginId", "foreignField": "loginId", "as": "StudentData" }
+},
+{ "$unwind": { "path": "$StudentData","preserveNullAndEmptyArrays": true} },
+{
+    "$lookup":
+        { "from": "MUniversity", "localField": "mUniversityId", "foreignField": "mUniversityId", "as": "affiliationAuthority" }
+},
+{ "$unwind": { "path": "$affiliationAuthority","preserveNullAndEmptyArrays": true} },
+{
+    "$lookup":
+        { "from": "Part", "localField": "StudentData.partId", "foreignField": "partId", "as": "Standard" }
+},
+{ "$unwind": { "path": "$Standard","preserveNullAndEmptyArrays": true} },
+{
+    "$lookup":
+        { "from": "Batch", "localField": "StudentData.batchId", "foreignField": "batchId", "as": "academicYear" }
+},
+{ "$project": { "wblId":1,"contactDetails.MobileNumber":1,
+    "contactDetails.emailId":1,"loginId":1,"personalDetails.firstName":1,
+    "personalDetails.lastName":1,"personalDetails.nameOnLeavingCertificate":1,
+    "personalDetails.middleName":1,"personalDetails.fatherName":1,
+    "personalDetails.motherName":1,"personalDetails.genderName":1,
+    "personalDetails.dateOfBirth":1, "isAccountActive" :1,
+    "mUniversityName" : 1,"mUniversityId":1,"mProgramName":1,"mProgramId":1,
+    "mBranchName" : 1,"mBranchId":1,
+    "profilePhotoUrl":1,"admissionFeePayment":1,"senNumber":1,"StudentData.courses.batchName":1,"StudentData.courses.mCourseName":1,
+    "StudentData.courses.mCourseId":1,"StudentData.courses.mUniversityId":1,"StudentData.courses.batchId":1,
+    "StudentData.courses.mUniversityName":1,"StudentData.courses.partName":1,"StudentData.courses.termName":1,
+    "StudentData.courses.partId":1,"StudentData.courses.termId":1,"StudentData.courses.institutionCode":1,
+    "StudentData.wblId":1,"StudentData.industryPartner.industryPartnerId":1,"StudentData.industryPartner.industryPartnerName":1,
+    "affiliationAuthority.mUniversityName":1,"affiliationAuthority.mUniversityCompleteName":1,
+    "affiliationAuthority.mUniversityCode":1,"affiliationAuthority.mUniversityId":1,"Standard.partId":1,
+    "Standard.partCompleteName":1,"academicYear.batchName":1,"academicYear.batchId":1,"academicYear.startDate":1
+    ,"academicYear.endDate":1}}
+]).toArray()
+
+
+
+
+
+db.getCollection('BasicProfile').aggregate([{"$match":{"wblUserType" : "CANDIDATE"}},
+ { "$group": {
+        "_id": {
+            "university": "$mUniversityId",
+            "program": "$mProgramId",
+            "branch":"$mBranchId"
+        }, "total": {"$sum": 1},"Names":{$push:"$wblId"}}}
+        ])

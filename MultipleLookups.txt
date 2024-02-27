@@ -1,0 +1,12 @@
+db.getCollection('StudentAcademicProfiles').aggregate([
+{$match:{"clientId": "1zlo0DhtUVCeG1Izw2cAIJrlGHF","standard.standardName":/^B.Sc/,
+"isActive":true,"isDeleted":false}},
+{$lookup:{"from": "Tests","localField": "standard.standardId",
+"foreignField": "standard.standardId","as": "testData"}},
+{$unwind:{path:"$testData",preserveNullAndEmptyArrays:true}},
+{$match:{"testData.testName":/Course End Test/}},
+{$lookup:{"from": "StudentTestSubmissions","localField": "student.studentId",
+"foreignField": "studentId","as": "studentTestData"}},
+{$unwind:{path:"$studentTestData",preserveNullAndEmptyArrays:true}},
+{$match:{$expr:{$and:[{$eq:['$testData.testId','$studentTestData.test.testId']}]}}},
+{$count:"total"}])

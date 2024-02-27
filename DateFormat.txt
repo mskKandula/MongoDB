@@ -1,0 +1,43 @@
+db.getCollection('StudentTestSubmissions').aggregate([{$match:
+    {"clientId": "1zlo0DhtUVCeG1Izw2cAIJrlGHF",
+     "evaluation" : {$exists:true},"standard.standardName":/^B.Sc/, "test.testName":/Course End Test/}},
+    {$lookup: {"from": "StudentProfiles","localField": "studentId",
+    "foreignField": "studentId","as": "studentData"}},{$unwind:{path: "$studentData"}},
+    {$project:{"_id":0,"RollNumber":"$studentData.academicProfile.rollNumber",
+        "Name":"$studentData.fullName",
+        "EmailId":"$studentData.emailId",
+        "Mobile Number":"$studentData.mobileNumber",                            
+        "StandardName":"$standard.standardName",
+        "SubjectCode":"$subject.subjectCode",
+        "SubjectName":"$subject.subjectName",
+        "TestName":"$test.testName",
+        "Appearance Date":{ $dateToString: { format: "%d-%m-%Y %H:%M", date: {$toDate:"$dateOfAppearance"},timezone: "+05:30" } },
+        "ObtainedMarks":"$evaluation.obtainedScore",
+        "MinimumPassingMarks":"$evaluation.minimumPassingScore",
+        "TotalMarks":"$evaluation.totalScore",
+        "EvaluationResult":"$evaluation.evaluationResult"}},
+        {$sort:{"TestName":1,"StandardName":1,"SubjectCode":1}}]).toArray()
+
+
+
+
+db.getCollection('StudentAssignmentSubmissions').aggregate([{"$match":
+    {"clientId": "1zlo0DhtUVCeG1Izw2cAIJrlGHF",
+     "standard.standardId":{"$in":["1zlobGdt6nUY2EgsPVYcYga3ZTW"]},
+     "assignmentName":/Mini Project/}},
+    {"$lookup": {"from": "StudentProfiles","localField": "studentId",
+    "foreignField": "studentId","as": "studentData"}},{"$unwind":{"path": "$studentData"}},
+    {"$project":{"_id":0,"RollNumber":"$studentData.academicProfile.rollNumber",
+        "Name":"$studentData.fullName",
+        "EmailId":"$studentData.emailId",
+        "Mobile Number":"$studentData.mobileNumber",                            
+        "StandardName":"$standard.standardName",
+        "SubjectCode":"$subject.subjectCode",
+        "SubjectName":"$subject.subjectName",
+        "AssignmentName":"$assignmentName",
+        "Appearance Date":{ "$dateToString": { "format": "%d-%m-%Y %H:%M", "date": {"$toDate":"$submissionDate"},"timezone": "+05:30" } },
+        "ObtainedMarks":"$score",
+        "MinimumPassingMarks":"$evaluation.minimumPassingScore",
+        "TotalMarks":"$totalScore",
+        "EvaluationResult":"$remark"}},
+        {"$sort":{"TestName":1,"StandardName":1,"SubjectCode":1}}]).toArray()

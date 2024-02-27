@@ -1,0 +1,1 @@
+db.getCollection('MPart').find({},{"mPartId":1,"mPartName":1,"mPartCompleteName":1,"mPartSequence":1,"_id":0}).toArray()

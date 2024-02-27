@@ -1,0 +1,9 @@
+Standards - MTerm/MPart
+shift - Default
+Divission - Default
+Medium-Default(English)
+Subjects -MCourse
+periods-Default
+affiliationAuthority-MUniversity
+AcademicYear-Batch
+Institute-IndustryPartner

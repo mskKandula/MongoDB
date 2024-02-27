@@ -1,0 +1,4 @@
+db.getCollection('BasicProfile').find({"wblUserType" : "MENTOR"},
+{"personalDetails.fullName":1,"personalDetails.dateOfBirth":1,"wblId":1,
+    "personalDetails.genderName":1,"profilePhotoUrl":1,"wblUserRoles":1,"loginId":1,
+    "isAccountActive":1,"contactDetails.emailId":1,"contactDetails.mobileNumber":1}).toArray()

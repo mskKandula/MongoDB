@@ -1,0 +1,30 @@
+db.getCollection('Term').updateMany({"termEndWorkbookEvaluationConfig.criteriaList.totalMarks":{$eq : 30}},
+
+{$set:{"termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForMentor" : 15,
+       
+       "termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForUniversity" : 15}},
+ 
+{arrayFilters:[{"el.totalMarks":{$eq : 30}}]})
+
+
+db.getCollection('Term').updateMany({"termEndWorkbookEvaluationConfig.criteriaList.totalMarks":{$eq : 20}},
+
+{$set:{"termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForMentor" : 10,
+       
+       "termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForUniversity" : 10}},
+ 
+{arrayFilters:[{"el.totalMarks":{$eq : 20}}]})
+
+db.getCollection('TermEndWorkbook').updateMany({"termEndWorkbookEvaluationConfig.criteriaList.totalMarks":{$eq : 30}},
+{$set:{"termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForMentor" : 15,
+       
+       "termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForUniversity" : 15}},
+ 
+{arrayFilters:[{"el.totalMarks":{$eq : 30}}]})
+
+db.getCollection('TermEndWorkbook').updateMany({"termEndWorkbookEvaluationConfig.criteriaList.totalMarks":{$eq : 20}},
+{$set:{"termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForMentor" : 10,
+       
+       "termEndWorkbookEvaluationConfig.criteriaList.$[el].totalMarksForUniversity" : 10}},
+ 
+{arrayFilters:[{"el.totalMarks":{$eq : 20}}]})

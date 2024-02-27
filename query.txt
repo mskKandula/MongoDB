@@ -1,0 +1,150 @@
+db.getCollection('AcademicDetails').aggregate([
+	{
+		"$match": {
+                    "mBranchId" : "e699bd59-f050-47c5-997d-bf9a018d81bb",
+                    "batchId" : "c601e438-3c4a-42ec-a97b-058cf74faf73",
+                    "partId" : "69c3ee04-0f47-4655-8da9-7b535fb7c240",
+                    "termId" : "00d2cbda-8a9a-4507-bf26-3f77bed3fddd",
+		    "isCurrentTerm": true
+		}
+	},
+	{
+		"$unwind": "$courses"
+	},
+	{
+		"$lookup": {
+			"from": "Rating",
+			"localField": "termId",
+			"foreignField": "termId",
+			"as": "ratings"
+		}
+	},
+	{
+		"$lookup": {
+			"from": "BasicProfile",
+			"localField": "loginId",
+			"foreignField": "loginId",
+			"as": "basicDetails"
+		}
+	},
+	{
+		"$unwind": "$basicDetails"
+	},
+	{
+		"$project": {
+			"batchId": 1,
+			"mBranchId": 1,
+			"mUniversityId": 1,
+			"partId": 1,
+			"termId": 1,
+			"wblId": 1,
+			"batchName": 1,
+			"basicDetails": 1,
+			"isActive": 1,
+			"loginId": 1,
+			"industryPartner": 1,
+			"mBranchName": 1,
+			"mProgramId": 1,
+			"mProgramName": 1,
+			"mUniversityName": 1,
+			"partName": 1,
+			"prnNumber": 1,
+			"termCompleteName": 1,
+			"termName": 1,
+			"termOrder": 1,
+			"termSequence": 1,
+			"termStatus": 1,
+			"isCurrentTerm": 1,
+			"senNumber": 1,
+			"courses": 1,
+			"industryPartner": 1,
+			"ratings": {
+				"$filter": {
+					"input": "$ratings",
+					"as": "ratings",
+					"cond": {
+						"$and": [
+							{
+								"$eq": [
+									"$$ratings.loginId",
+									"~tokenUserId"
+								]
+							},
+							{
+								"$eq": [
+									"$$ratings.isEvaluated",
+									true
+								]
+							}
+						]
+					}
+				}
+			}
+		}
+	},
+	{
+		"$unwind": {
+			"path": "$ratings",
+			"preserveNullAndEmptyArrays": true
+		}
+	},
+	{
+		"$group": {
+			"_id": {
+				"loginId": "$loginId",
+				"basicDetails": "$basicDetails",
+				"industryPartner": "$industryPartner",
+				"termId": "$courses.termId",
+				"courseId": "$courses.courseId",
+				"eCourseId": "$courses.eCourseId",
+				"courseName": "$courses.courseName",
+				"mCourseName": "$courses.mCourseName",
+				"eCourseName": "$courses.eCourseName",
+				"courseType": "$courses.courseType",
+				"workRatingFactor": "$courses.workRatingFactor",
+				"conductRatingFactor": "$courses.conductRatingFactor",
+				"totalConductRating": "$courses.totalConductRating",
+				"totalWorkRating": "$courses.totalWorkRating"
+			},
+			"avgObtainedConductRating": {
+				"$avg": "$ratings.obtainedConductRating"
+			},
+			"avgObtainedWorkRating": {
+				"$avg": "$ratings.obtainedWorkRating"
+			}
+		}
+	},
+	{
+		"$project": {
+			"_id": 0,
+			"loginId": "$_id.loginId",
+			"industryPartner": "$_id.industryPartner",
+			"termId": "$_id.termId",
+			"courseId": "$_id.courseId",
+			"basicDetails": "$_id.basicDetails",
+			"eCourseId": "$_id.eCourseId",
+			"courseName": "$_id.courseName",
+			"mCourseName": "$_id.mCourseName",
+			"eCourseName": "$_id.eCourseName",
+			"courseType": "$_id.courseType",
+			"workRatingFactor": "$_id.workRatingFactor",
+			"conductRatingFactor": "$_id.conductRatingFactor",
+			"totalConductRating": "$_id.totalConductRating",
+			"totalWorkRating": "$_id.totalWorkRating",
+			"avgObtainedConductRating": 1,
+			"avgObtainedWorkRating": 1,
+			"avgWorkRating": {
+				"$multiply": [
+					"$avgObtainedWorkRating",
+					"$_id.workRatingFactor"
+				]
+			},
+			"avgConductRating": {
+				"$multiply": [
+					"$avgObtainedConductRating",
+					"$_id.conductRatingFactor"
+				]
+			}
+		}
+	}
+]).toArray()

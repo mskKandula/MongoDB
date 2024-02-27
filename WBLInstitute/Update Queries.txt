@@ -1,0 +1,107 @@
+<----------------------------------------------------------------Sem - 3 Start-------------------------------------------------------------------------------------------->
+
+db.TocNodes.find({ tocTreeId:'3dd12d7b-1776-49b1-a0b7-345a86c80858', isDeleted: false })
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '86bcb005-19d0-44e6-a364-7b16dfa6c158' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+db.TocNodes.find({ tocTreeId:'28xgxpKnXJEz7QcKzwJAW9KANOr', isDeleted: false })
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '290sTATgzyU2NwsALMXYkPlAXen' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+db.TocNodes.find({ tocTreeId:'24ozqbXNa0Nbj0robzAysUTFy5Y', isDeleted: false }) 
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '290EteaPIsFM2qOwHzmV0olqwHE' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+
+db.TocNodes.find({ tocTreeId:'228671bf-b8bb-481a-89b5-101e2b33cd0f', isDeleted: false }) 
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  'fd0b7264-ad3c-4727-9089-5697147e1a15' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+db.TocNodes.find({ tocTreeId:'62f28ccf-45a3-4568-a5b2-a3c95432f260', isDeleted: false }) 
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  'd5fe436a-1bab-4be0-80a5-acd411c6d653' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+
+<----------------------------------------------------------------Sem - 3 End-------------------------------------------------------------------------------------------->
+
+
+
+
+
+<----------------------------------------------------------------Sem - 4 Start -------------------------------------------------------------------------------------------->
+
+
+
+db.TocNodes.find({ tocTreeId:'0b0040f2-21f5-452e-bae0-1c77bc6862e5', isDeleted: false })
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '2a39724e-7380-44f1-a833-96cc214c3875' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+db.TocNodes.find({ tocTreeId:'23dGKoMmSbmqzqmUB7VIvhQryeb', isDeleted: false })
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '290sR2gITvn1yrSykdfvSta5u3a' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+db.TocNodes.find({ tocTreeId:'f49b7866-58df-4698-9db4-23a9735496db', isDeleted: false }) 
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '3e705b2b-adea-4310-8e18-86614b86664d' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+
+db.TocNodes.find({ tocTreeId:'9121665c-9ec7-41ca-b083-18f437ec6abc', isDeleted: false })
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '9bde2cf6-3ea0-4513-88cd-68e5955311bd' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+db.TocNodes.find({ tocTreeId:'24ox7mGb0BoLzZzq10IDuWjtSF4', isDeleted: false })
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '290BvxTlme0bVxY6FI2bqVEQc9v' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+
+db.TocNodes.find({ tocTreeId:'5f34d3ca-3067-4d50-ae61-0a5672b4530c', isDeleted: false })
+    .forEach(function(myDocument) {
+       db.TocNodes.updateOne(
+      { level: myDocument.level,nodeName: myDocument.nodeName , 'contents': {$size:0}, nodeTypeId:myDocument.nodeTypeId ,tocTreeId:  '2520f419-e6d3-480d-a883-46622c89fde6' },
+      { "$set": { 'contents': myDocument.contents } }
+   );
+});
+
+
+
+<----------------------------------------------------------------Sem - 4 End -------------------------------------------------------------------------------------------->

@@ -1,0 +1,22 @@
+db.getCollection('AcademicDetails').updateOne({ "loginId" : "gkatare75@gmail.com"},{
+    $set:{
+        "batchId":"1jY4wEmzCenSpsVFEwqe9aTBUPQ",
+        "batchName":"July 2020",
+        "batchCode":"BATCHCODE002",
+        "partId" : "1jY5IVDFkdoEs47PV1EU44KIp9l",
+        "termId" : "1jY7Gt4CyYmDUv9BNyO2XdW7UyB",
+        "partCompleteName" : "First Year",
+        "partName" : "FY",
+        "termCompleteName" : "Semester I",
+        "termName" : "SEM I",
+        "termOrder" : 1.0,
+        "termSequence" : 1.0,
+        "activeTermStatus" : true,
+        "inactiveTermStatus" : false,
+        "isCurrentTerm" : true,
+        "isActive" : true,
+        },
+     $unset :{
+         "courses":""
+         }
+         })

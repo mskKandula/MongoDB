@@ -1,0 +1,32 @@
+db.getCollection('BasicProfile').aggregate([{
+    $match:{
+    "wblUserType" : "CANDIDATE",
+    "isAccountActive":true,
+    "mUniversityId" : "44c14242-0c8f-4a11-8b71-4ac6fde5fa42"
+    }},
+    {
+        $project:{
+    "_id":0,    
+    "RollNumber":"$wblId",
+    "FirstName":"$personalDetails.firstName",
+    "LastName":"$personalDetails.lastName",
+    "FatherName":"$personalDetails.fatherName",
+    "MotherName":"$personalDetails.motherName",
+    "MobileNo":"$contactDetails.MobileNumber",
+    "EmailId":"$contactDetails.emailId",
+    "Gender":"$personalDetails.genderName",
+    "DOB":{
+        $let: {
+               vars: {
+                  dateOB:{ $toDate: "$personalDetails.dateOfBirth"}
+              },
+        
+         in:{$dateToString: 
+        { format: "%d-%m-%Y",
+            date: "$$dateOB" } }
+    }
+}
+    }
+}
+    ]
+        ).toArray()

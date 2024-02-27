@@ -1,0 +1,11 @@
+db.getCollection('Invoices').aggregate([
+
+{$match :{"invoiceId":"1viH1WTFsd1Ge9Wm8ldj0hBjcWV","isDeleted":false}},
+
+{$unwind : "$deletedStudentDetails"},
+
+{$group :{"_id":"$deletedStudentDetails.deletedStudentId","count":{$sum:1}}},
+
+{ $count: "myCount" }
+
+])

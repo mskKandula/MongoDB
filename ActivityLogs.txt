@@ -1,0 +1,12 @@
+db.getCollection('StudentActivityLogs').aggregate([
+{$lookup: {
+ "from": "Institutes","localField": "clientId","foreignField": "clientId","as": "userinfo"}},
+{$unwind:{path: "$userinfo"}},{$group:
+    {_id:{'instituteName':'$userinfo.instituteName','activityName':"$activityData.activityName"},
+items: {$addToSet: {"student":"$studentId",'activity':"$activityData.activityName"}}
+}},
+{$project:
+     {"activityName":"$_id.activityName","instituteName":"$_id.instituteName","activitiesCount":{$size:"$items"},"_id":0}
+  }
+  
+  ])

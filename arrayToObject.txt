@@ -1,0 +1,13 @@
+db.getCollection('CollectionName').aggregate(
+{$match:{"clientId" : ""}},{$unwind:"$instituteType"}).forEach(function(doc){
+    
+    db.getCollection('CollectionName').updateOne({clientId:doc.clientId},
+    
+    {"$set":{
+        
+        "instituteType":doc.instituteType
+
+        }}
+    )
+    
+    })

@@ -1,0 +1,48 @@
+db.getCollection('BasicProfile').aggregate([{
+    $match:{
+    "wblUserType" : "CANDIDATE",
+    "isAccountActive":true,
+    "mUniversityId" : "44c14242-0c8f-4a11-8b71-4ac6fde5fa42"
+    }},
+   { $lookup:
+    {
+        from :"AcademicDetails",
+        localField:"wblId",
+        foreignField:"wblId",
+        as:"studentAcademicDetails"}},
+        { $unwind: { path: "$studentAcademicDetails",
+    } },
+    {
+        $match:{
+            "studentAcademicDetails.termId" : "69c94680-5b51-4c02-ac69-a08e9fa33afe"}},
+    {
+        $project:{
+    "_id":0,    
+    "RollNumber":"$wblId",
+    "FirstName":"$personalDetails.firstName",
+    "MiddleName":"$personalDetails.middleName",
+    "LastName":"$personalDetails.lastName",
+    "FullName":"$personalDetails.fullName",
+    "FatherName":"$personalDetails.fatherName",
+    "MotherName":"$personalDetails.motherName",
+    "MobileNo":"$contactDetails.MobileNumber",
+    "EmailId":"$contactDetails.emailId",
+    "Gender":"$personalDetails.genderName",
+    "DOB":{
+        $let: {
+               vars: {
+                  dateOB:{ $toDate: "$personalDetails.dateOfBirth"}
+              },
+        
+         in:{$dateToString: 
+        { format: "%d-%m-%Y",
+            date: "$$dateOB" } }
+    }
+},
+"BatchName":"$studentAcademicDetails.batchName",
+"Term":"$studentAcademicDetails.termName",
+"TermCompleteName":"$studentAcademicDetails.termCompleteName"
+    }
+}
+    ]
+        ).toArray()

@@ -1,0 +1,14 @@
+db.getCollection('Assignments').aggregate([
+{ "$match": {  "academicYear.academicYearId": "1t4ciIkUaT0sFnA9T4OX7E4QWMK","clientId":"1t4bbLDyA9Ny2Df7CojJiodF4u3"} },
+{
+    "$lookup":
+        { "from": "StudentAssignmentSubmissions", "localField": "assignmentId", "foreignField": "assignmentId", "as": "candidateBasicProfile" }
+},
+
+{ "$unwind": { "path": "$candidateBasicProfile",
+   "preserveNullAndEmptyArrays": true } }
+
+
+
+])
+

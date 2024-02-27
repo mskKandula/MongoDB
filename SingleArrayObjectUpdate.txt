@@ -1,0 +1,7 @@
+db.getCollection('Temp').updateOne({"loginId" : "panudewawar@gmail.com"},
+{"$set" :{"courses.$[doc].institutionCode" : "560"}},
+{"arrayFilters":[{"doc.eCourseId":"018ab014f8d8dbe12b1d8670dceb3b50"}]})
+
+
+db.getCollection('Temp').updateOne({"loginId" : "panudewawar@gmail.com","courses.eCourseId" : "018ab014f8d8dbe12b1d8670dceb3b50"},
+{"$set" :{"courses.$.institutionCode" : "560"}})

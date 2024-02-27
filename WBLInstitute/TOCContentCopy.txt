@@ -1,0 +1,10 @@
+db.SubjectTOC.aggregate([{"$match":{'clientId':'20ziQxozskK9j4mNQHEcpzk0aF5', 'standardId':'20zjs7ZSNMKhJpar5arWAs1HGqw',
+    'isDeleted':false}},{"$group":{"_id":"$subjectId"}}]).toArray();
+
+
+db.getCollection('SubjectTOC').find({'clientId':'20ziQxozskK9j4mNQHEcpzk0aF5', 'standardId':'20zjs7ZSNMKhJpar5arWAs1HGqw',
+    'isDeleted':false,'subjectId':"25B6txaCArej2VXP2NPuSN9wq4E"}).sort({_id:1});
+
+db.getCollection('SubjectTOC').find({tocTreeId:'3dd12d7b-1776-49b1-a0b7-345a86c80858'})
+
+db.getCollection('Subjects').find({"subjectId" : "20zkplV1DUyErll4EWIyc2X99ot"})

@@ -1,0 +1,11 @@
+db.getCollection('Notification').updateMany({
+    "university.mUniversityId" : "44c14242-0c8f-4a11-8b71-4ac6fde5fa42",
+    "branch.mBranchId" : "e699bd59-f050-47c5-997d-bf9a018d81bb",
+    "program.mProgramId":"599fce88-4f10-42ee-992d-9a506835ab43",
+    "batch.batchId" : "1jY4wEmzCenSpsVFEwqe9aTBUPQ",
+    "term.termId" : "1jY7Gt4CyYmDUv9BNyO2XdW7UyB"},
+    {$set :{
+        "part.partId" : "1jY5IVDFkdoEs47PV1EU44KIp9l",
+        "notifyAt":1607945405000
+        }
+        })

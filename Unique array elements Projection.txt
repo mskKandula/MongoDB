@@ -1,0 +1,15 @@
+db.getCollection('StudentAcademicProfiles').update(
+{"student.studentId" : "1t8cAIUKLHGQtS4rXt36nfHtx8O"},
+{"$set": { "Newsubjects": { "$setUnion": [ "$subjects"]} }})
+
+
+db.StudentAcademicProfiles.aggregate([
+ {"$match":{"student.studentId": "1t8cAIUKLHGQtS4rXt36nfHtx8O" }},
+ {"$project":{"subjects":1,"student":1}},
+ {"$unwind":"$subjects"},
+  {"$group":{
+     _id: "$student.studentId",
+     "newSubjects" : { "$addToSet": "$subjects" }    
+  }},
+  {"$set":{"newSubjects":"$newSubjects"}}
+]);

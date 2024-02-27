@@ -1,0 +1,24 @@
+
+db.StudentAcademicProfiles.aggregate([
+ {"$match":{"clienId": "1t8cAIUKLHGQtS4rXt36nfHtx8O" }},
+ {"$project":{"subjects":1,"student":1}},
+ {"$unwind":"$subjects"},
+  {"$group":{
+     _id: "$student.studentId",
+     "newSubjects" : { "$addToSet": "$subjects" }    
+  }}
+]);
+
+copy the data to add in a new collection(NewSubjects) using insertMany
+
+db.getCollection('NewSubjects').find({}).forEach(function(doc){
+    
+    db.getCollection('StudentAcademicProfiles').updateOne({"student.studentId":doc._id},
+    
+    {"$set":{
+        
+        "newSubjects":doc.newSubjects
+
+        }}
+    )
+
